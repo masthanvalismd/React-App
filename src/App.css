@@ -1,27 +1,76 @@
-body{
+body {
   padding: 15px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgb(130, 129, 144) 0%,
+    rgb(185, 185, 208) 41%,
+    rgb(187, 204, 211) 87%,
+    rgb(132, 151, 155) 100%
+  );
 }
-.Movie{
- 
-  width:22rem;
-  background-color: rgb(199, 237, 240);
+.movie-container {
+  width: 22rem;
+  background: rgb(169, 167, 191);
+  background: radial-gradient(
+    circle,
+    rgba(169, 167, 191, 1) 0%,
+    rgba(236, 193, 193, 1) 100%,
+    rgba(135, 226, 245, 1) 100%,
+    rgba(83, 187, 132, 1) 100%
+  );
   justify-content: center;
-  text-align:center;
-  
+  text-align: center;
+  box-shadow: 0px 0px 19px 6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 19px 6px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 19px 6px rgba(0, 0, 0, 0.75);
 }
-.movieList{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(340px,1fr)) ;
-  gap:10px;
+.movieList {
+  padding-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 10px;
   justify-items: center;
 }
-.pic{
-  width:22rem;
-  height: 40rem;
-  object-fit: cover;
+.movie-container:hover {
+  transform: scale(1.02);
+
+  cursor: pointer;
 }
-.det{
-  display:flex;
+.add-movie {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-    justify-content: space-between;
+  padding-bottom: 10px;
 }
+.textField{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.pic {
+  width: 13rem;
+  height: 20rem;
+  /* object-fit: cover; */
+}
+.det {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counter-Container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  padding-bottom: 10px;;
+}
+.counter-Container > button {
+  font-size: 1rem;
+}
+.delBtn{
+  padding-bottom: 10px;
+}
+
