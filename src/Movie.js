@@ -13,16 +13,16 @@ export function Movie({ poster, name, rating, summary, deleteButton }) {
   return (
     <div className="movie-container">
       <img className="pic" src={poster} alt="img" />
+      <Counter />
+      <div className="delBtn">{deleteButton}</div>
       <div className="det">
         {/* <ColorBox/> */}
 
-        <h1>{name}</h1>
+        <h2>{name}</h2>
         <p style={styles} className="rating">
           {rating}⭐
         </p>
       </div>
-      <div className="delBtn">{deleteButton}</div>
-      <Counter />
       <Button
      style={{ backgroundColor: "wheat", color: "black",padding: "5px" }}
 

@@ -12,6 +12,7 @@ export function MovieList({ movies, setMovieList }) {
               className="deleteButton"
               style={{
                 backgroundColor: "orange",
+                fontSize: "10px",
                 color: "#FFFFFF",
               }}
               onClick={() => {

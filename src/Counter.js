@@ -14,6 +14,7 @@ export function Counter() {
         onClick={() => {
           setLike(like + 1);
         }}>
+        
         👍{like}
       </Button>
       <Button
