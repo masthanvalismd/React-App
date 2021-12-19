@@ -3,6 +3,9 @@ import { useState } from "react";
 import { MovieList } from "./MovieList";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { Switch, Route, Link } from "react-router-dom";
+import { AddColor } from "./AddColor";
+
 
 export default function App() {
   const Initial_Movies = [
@@ -102,46 +105,89 @@ export default function App() {
     },
   ];
   const [movieList, setMovieList] = useState(Initial_Movies);
-  const [name, setName] = useState("");
-  const [rating, setRating] = useState("");
-  const [poster, setPoster] = useState("");
-  const [summary, setSummary] = useState("");
 
   return (
     <div className="App">
-      <h1>A Small Website Created By Using "REACT"</h1>
-      <div className="add-movie">
-        <div className="textField">
-          <TextField
-            variant="standard"
-            style={{ width:"100%",margin:"0px 8px",paddingLeft:"5px" }}
-            
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-            placeholder="Enter a Name"
-            />
-          <TextField
-            variant="standard"
-            style={{ width:"100%",margin:"0px 8px",paddingLeft:"5px" }}
-            value={rating}
-            onChange={(event) => setRating(event.target.value)}
-            placeholder="Enter Rating"
-            />
-          <TextField
-            variant="standard"
-            style={{ width:"100%",margin:"0px 8px",paddingLeft:"5px" }}
-            value={poster}
-            onChange={(event) => setPoster(event.target.value)}
-            placeholder="Enter Poster Link"
-            />
-          <TextField
-            variant="standard"
-            style={{ width:"100%",margin:"0px 8px",paddingLeft:"5px" }}
-            value={summary}
-            onChange={(event) => setSummary(event.target.value)}
-            placeholder="Enter Summary"
-          />
-        </div>
+      <div className="listItems">
+        <nav>
+        <ul type="none">
+          <li>
+            <Link className="link" to="/home" style={{ textDecoration: 'none',color: 'white' }}>🏠Home</Link>
+          </li>
+          <li>
+            <Link to="/about" style={{ textDecoration: 'none',color: 'white' }}>🎞️AboutMovies</Link>
+          </li>
+          <li>
+            <Link to="/addMovieInput" style={{ textDecoration: 'none',color: 'white' }}>📽️AddMovies</Link>
+          </li>
+          <li>
+            <Link to="/addcolor" style={{ textDecoration: 'none' ,color: 'white'}}>📲AddColor</Link>
+          </li>
+        </ul>
+      </nav>
+      </div>
+    
+        <Switch>
+        <Route path="/about">
+          <div className="add-movie">
+            <h2>A Small Website Created By Using "REACT"</h2>
+          </div>
+          <MovieList movies={movieList} setMovieList={setMovieList} />
+        </Route>
+        <Route path="/home">
+          <Home />
+        </Route>
+        <Route path="/addcolor">
+        <AddColor/>
+           
+        </Route>
+        <Route path="/addMovieinput">
+          <AddMovieInput />
+        </Route>
+      </Switch>
+      
+    </div>
+  );
+
+  function AddMovieInput() {
+    const [name, setName] = useState("");
+    const [rating, setRating] = useState("");
+    const [poster, setPoster] = useState("");
+    const [summary, setSummary] = useState("");
+    return (
+      <div className="textField">
+        <TextField
+          label="Enter a Name"
+          variant="standard"
+          style={{ width: "100%", margin: "0px 8px", paddingLeft: "5px" }}
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          placeholder="Enter a Name"
+        />
+        <TextField
+          label="Enter Rating"
+          variant="standard"
+          style={{ width: "100%", margin: "0px 8px", paddingLeft: "5px" }}
+          value={rating}
+          onChange={(event) => setRating(event.target.value)}
+          placeholder="Enter Rating"
+        />
+        <TextField
+          label="Enter Poster Link"
+          variant="standard"
+          style={{ width: "100%", margin: "0px 8px", paddingLeft: "5px" }}
+          value={poster}
+          onChange={(event) => setPoster(event.target.value)}
+          placeholder="Enter Poster Link"
+        />
+        <TextField
+          label="Enter Summary"
+          variant="standard"
+          style={{ width: "100%", margin: "0px 8px", paddingLeft: "5px" }}
+          value={summary}
+          onChange={(event) => setSummary(event.target.value)}
+          placeholder="Enter Summary"
+        />
         <div className="btn">
           <Button
             variant="outlined"
@@ -161,7 +207,10 @@ export default function App() {
           </Button>
         </div>
       </div>
-      <MovieList movies={movieList} setMovieList={setMovieList} />
-    </div>
-  );
+    );
+  }
+}
+
+function Home() {
+  return <h1>Welcome to Movie App🤩😉🤩</h1>;
 }

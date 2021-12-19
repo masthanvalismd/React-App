@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { Counter } from "./Counter";
-import Button from "@mui/material/Button";
-// import { ColorBox } from "./ColorBox";
+// import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // import {AddMovie} from "./AddMovie";
 
 export function Movie({ poster, name, rating, summary, deleteButton }) {
@@ -16,19 +19,18 @@ export function Movie({ poster, name, rating, summary, deleteButton }) {
       <Counter />
       <div className="delBtn">{deleteButton}</div>
       <div className="det">
-        {/* <ColorBox/> */}
 
         <h2>{name}</h2>
+      <IconButton
+        onClick={() => setShow(!show)}
+        
+      >
+        {show ? <ExpandLessIcon/> : <ExpandMoreIcon/>}
+     </IconButton>
         <p style={styles} className="rating">
           {rating}⭐
         </p>
       </div>
-      <Button
-     style={{ backgroundColor: "wheat", color: "black",padding: "5px" }}
-
-        variant="contained" onClick={() => setShow(!show)}>
-        Toggle Description
-      </Button>
       {/* <p style={ descriptionStyles} className="movie-summary">{summary}</p> */}
       {show ? <p className="movie-summary">{summary}</p> : ""}
     </div>

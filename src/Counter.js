@@ -1,30 +1,36 @@
 import { useState } from "react";
-import Button from "@mui/material/Button";
-
+// import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import Badge from "@mui/material/Badge";
 
 export function Counter() {
   const [like, setLike] = useState(0);
   const [dislike, setDisLike] = useState(0);
+  const likes = () => {
+    setLike(like + 1);
+  };
+  const disLikes = () => {
+    setDisLike(dislike + 1);
+  };
   return (
     <div className="counter-Container">
-      <Button
-        variant="outlined"
-        style={{ backgroundColor: "green", color: "#FFFFFF",padding:"2px" }}
-        
-        onClick={() => {
-          setLike(like + 1);
-        }}>
-        
-        👍{like}
-      </Button>
-      <Button
-      variant="outlined"
-      style={{ backgroundColor: "red", color: "#FFFFFF",padding:"2px" }}
-        onClick={() => {
-        setDisLike(dislike + 1);
-      }}>
-        👎{dislike}
-      </Button>
+      <IconButton
+        color="primary"
+        onClick={likes}>
+        <Badge badgeContent={like} color="primary">
+          <ThumbUpIcon/>
+        </Badge>
+      </IconButton>
+
+      <IconButton
+        color="error"
+        onClick={disLikes}>
+        <Badge badgeContent={dislike} color="error">
+        <ThumbDownIcon/>
+        </Badge>
+      </IconButton>
     </div>
   );
 }
