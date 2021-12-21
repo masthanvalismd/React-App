@@ -105,6 +105,7 @@ h1 {
 }
 .listItems {
   background-color: rgb(128, 128, 122);
+  width:100%;
 }
 
 nav ul {
@@ -118,4 +119,18 @@ nav li {
 }
 .color {
   margin: 1rem auto;
+}
+.notFound{
+  text-align: center;
+  font-size: 5rem;
+}
+.notFound>h2{
+margin: 0;
+}
+.notFoundImg{
+  width: 100%;
+  max-width: 55rem;
+}
+.movie-details-container{
+  max-width: 60rem;
 }

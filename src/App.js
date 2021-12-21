@@ -3,9 +3,15 @@ import { useState } from "react";
 import { MovieList } from "./MovieList";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Switch, Route, Link } from "react-router-dom";
+import {
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useParams,
+} from "react-router-dom";
 import { AddColor } from "./AddColor";
-
 
 export default function App() {
   const Initial_Movies = [
@@ -110,50 +116,87 @@ export default function App() {
     <div className="App">
       <div className="listItems">
         <nav>
-        <ul type="none">
-          <li>
-            <Link className="link" to="/home" style={{ textDecoration: 'none',color: 'white' }}>🏠Home</Link>
-          </li>
-          <li>
-            <Link to="/about" style={{ textDecoration: 'none',color: 'white' }}>🎞️AboutMovies</Link>
-          </li>
-          <li>
-            <Link to="/addMovieInput" style={{ textDecoration: 'none',color: 'white' }}>📽️AddMovies</Link>
-          </li>
-          <li>
-            <Link to="/addcolor" style={{ textDecoration: 'none' ,color: 'white'}}>📲AddColor</Link>
-          </li>
-        </ul>
-      </nav>
+          <ul type="none">
+            <li>
+              <Link
+                className="link"
+                to="/"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                🏠Home
+              </Link>
+            </li>
+            {/* <li>
+              <Link
+                to="/films"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+              Films
+              </Link>
+            </li> */}
+            <li>
+              <Link
+                to="/aboutMovies/add"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                🎞️AboutMovies
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/addMovie"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                📽️AddMovies
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/addcolor"
+                style={{ textDecoration: "none", color: "white" }}
+              >
+                📲AddColor
+              </Link>
+            </li>
+          </ul>
+        </nav>
       </div>
-    
-        <Switch>
-        <Route path="/about">
+
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/films">
+          <Redirect to="/aboutMovies" />
+        </Route>
+        <Route path="/aboutMovies/add">
           <div className="add-movie">
             <h2>A Small Website Created By Using "REACT"</h2>
           </div>
           <MovieList movies={movieList} setMovieList={setMovieList} />
         </Route>
-        <Route path="/home">
-          <Home />
+        <Route path="/aboutMovies/:id">
+          <MovieDetails />
         </Route>
         <Route path="/addcolor">
-        <AddColor/>
-           
+          <AddColor />
         </Route>
-        <Route path="/addMovieinput">
-          <AddMovieInput />
+        <Route path="/addMovie">
+          <AddMovie />
+        </Route>
+        <Route path="**">
+          <NotFound />
         </Route>
       </Switch>
-      
     </div>
   );
 
-  function AddMovieInput() {
+  function AddMovie() {
     const [name, setName] = useState("");
     const [rating, setRating] = useState("");
     const [poster, setPoster] = useState("");
     const [summary, setSummary] = useState("");
+    const history = useHistory();
     return (
       <div className="textField">
         <TextField
@@ -201,6 +244,8 @@ export default function App() {
               };
               // console.log(newMovie);
               setMovieList([...movieList, newMovie]);
+              setName("");
+              history.push("/aboutMovies/add");
             }}
           >
             AddMovie
@@ -213,4 +258,44 @@ export default function App() {
 
 function Home() {
   return <h1>Welcome to Movie App🤩😉🤩</h1>;
+}
+
+function NotFound() {
+  return (
+    <div className="notFound">
+      <h2>404 Not Found</h2>
+      <img
+        className="notFoundImg"
+        src="https://assets.materialup.com/uploads/26541cce-49c6-4e35-a055-e11b90ffad68/preview.gif"
+        alt="404 Gif"
+      />
+    </div>
+  );
+}
+function MovieDetails() {
+  const { id } = useParams();
+  const name = "the";
+  const rating = "8";
+  const summary = "dlfkjhsdkfbswdkfb";
+  const trailer = "https://www.youtube.com/embed/JfVOs4VSpmA";
+  return (
+    <div> Now Showing {id}
+      <iframe
+        width="100%"
+        height="500"
+        src={trailer}
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+      <div className="movie-details-container">
+        <div className="det">
+          <h3 className="movie-name">{name}</h3>
+          <p className="movie-rating">⭐ {rating}</p>
+        </div>
+        <p className="movie-summary">{summary}</p>
+      </div>
+    </div>
+  );
 }
