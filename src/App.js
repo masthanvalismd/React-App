@@ -1,6 +1,5 @@
 import "./App.css";
 import { useState } from "react";
-import useWindowSize from "react-use/lib/useWindowSize";
 import { MovieList } from "./MovieList";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,7 +9,7 @@ import { Switch, Route, Redirect, useHistory } from "react-router-dom";
 import { AddColor } from "./AddColor";
 import { MovieDetails } from "./MovieDetails";
 import { NotFound } from "./NotFound";
-import Confetti from "react-confetti";
+import { TicTacToe } from "./TicTacToe";
 
 export default function App() {
   const history = useHistory();
@@ -139,7 +138,10 @@ export default function App() {
             <Button color="inherit" onClick={() => history.push("/addcolor")}>
               📲AddColor
             </Button>
-            <Button color="inherit" onClick={() => history.push("/tic-tac-toe")}>
+            <Button
+              color="inherit"
+              onClick={() => history.push("/tic-tac-toe")}
+            >
               🎮TicTacToe
             </Button>
           </Toolbar>
@@ -173,6 +175,9 @@ export default function App() {
         </Route>
         <Route path="**">
           <NotFound />
+        </Route>
+        <Route path="dark-mode">
+          <DarkMode />
         </Route>
       </Switch>
     </div>
@@ -237,6 +242,7 @@ export default function App() {
           >
             AddMovie
           </Button>
+          <DarkMode/>
         </div>
       </div>
     );
@@ -247,93 +253,7 @@ function Home() {
   return <h1>Welcome to Movie App🤩😉🤩</h1>;
 }
 
-function TicTacToe() {
-  const { width, height } = useWindowSize();
-  const [board, setBoard] = useState([
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-    null,
-  ]);
 
-  // x starts the game - hence isXTurn true
-  const [isXTurn, setIsXTurn] = useState(true);
-
-  const handleClick = (index) => {
-    console.log("Clicked", index);
-    if (!winner && !board[index]) {
-      const boardCopy = [...board];
-      boardCopy[index] = isXTurn ? "X" : "O";
-      setBoard(boardCopy);
-      setIsXTurn(!isXTurn);
-    }
-  };
-
-  const decideWinner = (board) => {
-    const lines = [
-      [0, 1, 2],
-      [3, 4, 5],
-      [6, 7, 8],
-      [0, 3, 6],
-      [1, 4, 7],
-      [2, 5, 8],
-      [0, 4, 8],
-      [2, 4, 6],
-    ];
-    for (let i = 0; i < lines.length; i++) {
-      const [a, b, c] = lines[i];
-
-      // if all three are equal or null
-      if (board[a] !== null && board[a] === board[b] && board[a] === board[c]) {
-        console.log("Winner is", board[a]);
-        return board[a];
-      }
-    }
-    return null;
-  };
-
-  const winner = decideWinner(board);
-  const history = useHistory();
-  return (
-    <div className="game">
-      {winner ? <Confetti width={width} height={height} gravity={0.03} /> : " "}
-      <div className="board">
-        {/* based whose turn we have to pass val down */}
-        {board.map((val, index) => (
-          <GameBox val={val} onPlayerClick={() => handleClick(index)} />
-        ))}
-        <Refresh />
-        {/* <Button variant="outlined"  onClick={() => history.("/tic-tac-toe")}>Start Game</Button> */}
-      </div>
-      {winner ? <h2 className="winner-text">The Winner Is "<span className="winner-">{winner}</span>"</h2> : " "}
-    </div>
-  );
-}
-function Refresh() {
-  
-  function refreshPage() {
-    window.location.reload(false);
-  }
-  
-  return (
-    <div > <Button color="error" variant="outlined"  onClick={refreshPage}>Reset</Button>
-     
-    </div>
-  );
-}
-function GameBox({ val, onPlayerClick }) {
-  // const val ="X" ;
-  const styles = {
-    color: val === "X" ? "cyan" : "yellow",
-  };
-  return (
-    <div style={styles} onClick={() => onPlayerClick()} className="game-box">
-      {val}
-    </div>
-  );
+function DarkMode() {
+  return <Button variant="outlined">Enable DarkMode</Button>
 }
