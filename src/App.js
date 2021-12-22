@@ -176,9 +176,6 @@ export default function App() {
         <Route path="**">
           <NotFound />
         </Route>
-        <Route path="dark-mode">
-          <DarkMode />
-        </Route>
       </Switch>
     </div>
   );
@@ -242,7 +239,6 @@ export default function App() {
           >
             AddMovie
           </Button>
-          <DarkMode/>
         </div>
       </div>
     );
@@ -254,6 +250,3 @@ function Home() {
 }
 
 
-function DarkMode() {
-  return <Button variant="outlined">Enable DarkMode</Button>
-}
