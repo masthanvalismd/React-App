@@ -1,33 +1,27 @@
-body {
-  padding: 15px;
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgb(130, 129, 144) 0%,
-    rgb(185, 185, 208) 41%,
-    rgb(187, 204, 211) 87%,
-    rgb(175, 208, 214) 100%
-  );
+*{
+  margin: 0;
+  padding: 0;
 }
 .movie-container {
   border-radius: 1px;
   width: 22rem;
-  background: rgb(169, 167, 191);
+  /* background: rgb(169, 167, 191);
   background: radial-gradient(
     circle,
     rgba(169, 167, 191, 1) 0%,
     rgba(236, 193, 193, 1) 100%,
     rgba(135, 226, 245, 1) 100%,
     rgba(83, 187, 132, 1) 100%
-  );
+  ); */
   justify-content: center;
   text-align: center;
-  box-shadow: 0px 0px 19px 6px rgba(0, 0, 0, 0.75);
-  -webkit-box-shadow: 0px 0px 19px 6px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 0px 0px 19px 6px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 24px 1px rgba(71, 71, 71, 0.75);
+  -webkit-box-shadow: 0px 0px 24px 1px rgba(76, 75, 75, 0.75);
+  -moz-box-shadow: 0px 0px 24px 1px rgba(130,130,130,0.75);
 }
+
 .movieList {
-  padding-top: 20px;
+  padding-top: 30px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   gap: 10px;
@@ -77,11 +71,7 @@ body {
   font-size: 1rem;
 }
 
-h2 {
-  font-family: roboto;
-  font-style: normal;
-  padding-left: 5px;
-}
+
 .movie-summary {
   font-family: cursive;
   padding-top: 0px;
@@ -96,13 +86,7 @@ h2 {
 .btn {
   padding-top: 10px;
 }
-h1 {
-  text-align: center;
-  font-family: monospace;
-  font-style: italic;
-  font-size: 2rem;
-  color: rgb(230, 30, 30);
-}
+
 .listItems {
   background-color: rgb(128, 128, 122);
   width:100%;
@@ -135,14 +119,14 @@ margin: 0;
   max-width: 60rem;
 }
 .navBar{
-  padding-bottom: 3rem;
+  padding-bottom: 5rem;
 }
 
 .game-box{
-  height:8rem;
-  width:8rem;
+  height:8vw;
+  width:8vw;
   border:3px solid black ;
-  border-radius:2px;
+  border-radius:20px;
   background-color:rgb(196, 15, 157);
   font-size: 7rem;
   display:flex ;
@@ -166,6 +150,7 @@ margin: 0;
 }
 .winner-text{
   font-size: 2rem;
+  padding: 20px;
   font-family:monospace;
   
   font-weight: bold;
@@ -185,3 +170,65 @@ margin: 0;
   color:rgb(255, 123, 0);
 }
 
+
+.text-shine{
+  
+    font-weight: 700;
+    text-align: center;
+    font-size: 40px;
+    font-family: Hack, sans-serif;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, rgb(199, 24, 24), rgb(149, 116, 116), rgb(214, 7, 7));
+    letter-spacing: 5px;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: shine 5s linear infinite;
+    position: relative;
+  }
+  
+  @keyframes shine {
+    0% {
+      background-position-x: -500%;
+    }
+    100% {
+      background-position-x: 500%;
+    }
+  
+  
+}
+
+.slideInLeft {
+  font-size:2rem ;
+  color:brown;
+  -webkit-animation-name: slideInLeft;
+  animation-name: slideInLeft;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  }
+  @-webkit-keyframes slideInLeft {
+  0% {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  }
+  @keyframes slideInLeft {
+  0% {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  visibility: visible;
+  }
+  100% {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  }
+  } 
