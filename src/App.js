@@ -118,7 +118,7 @@ export default function App() {
   })
   return (
     <ThemeProvider theme={theme}>
-      <Paper sx={{minHeight:"100vh",borderRadius:"0px"}} elevation={10} >
+      <Paper sx={{minHeight:"100vh",borderRadius:"0px"}} elevation={5} >
 
       <div className="App">
         <div className="navBar">
