@@ -13,7 +13,7 @@ export function EditMovie() {
       .then((data) => data.json())
       .then((mv) => setMovie(mv));
   };
-  useEffect(getMovies, []);
+  useEffect(getMovies);
   return movie ? <UpdateDetails movie={movie} /> : "";
 }
 function UpdateDetails({ movie }) {

@@ -15,7 +15,7 @@ export function MovieDetails() {
     .then((data) => data.json())
     .then((mv) => setMovie(mv));
   };
-  useEffect(getMovies, []);
+  useEffect(getMovies);
   const history= useHistory()
 
   return (
