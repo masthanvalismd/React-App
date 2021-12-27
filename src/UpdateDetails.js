@@ -12,7 +12,7 @@ export function UpdateDetails() {
   const [poster, setPoster] = useState("");
   const [summary, setSummary] = useState("");
   const [trailer, setTrailer] = useState("");
-  const [userId, setUserId] = useState([]);
+  const [userId, setUserId] = useState("");
   // const { id } = useParams();
   useEffect(() => {
     getMovies();
