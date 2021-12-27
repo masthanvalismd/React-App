@@ -4,6 +4,7 @@ import { Counter } from "./Counter";
 // import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
+import EditIcon from '@mui/icons-material/Edit';
 
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -29,6 +30,13 @@ export function Movie({ poster, name, rating, summary, deleteButton, id }) {
           aria-label="aboutMovies"
         >
           <InfoIcon />
+        </IconButton>
+        <IconButton
+          onClick={() => history.push(`/aboutMoviesedit/${id}`)}
+          color="primary"
+          aria-label="aboutMoviesEdit"
+        >
+          <EditIcon />
         </IconButton>
         <IconButton onClick={() => setShow(!show)}>
           {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}

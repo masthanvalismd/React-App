@@ -1,6 +1,7 @@
 import "./App.css";
-import { useState,useEffect, } from "react";
+import { useState } from "react";
 import { MovieList } from "./MovieList";
+
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
@@ -15,6 +16,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Paper from '@mui/material/Paper';
 import { AddMovie } from "./AddMovie";
+import { UpdateDetails } from "./UpdateDetails";
 
 export default function App() {
   const [mode,setMode]=useState("light")
@@ -107,15 +109,9 @@ export default function App() {
 
   
   // ];
-  const [movieList, setMovieList] = useState([])
+ 
   
-  useEffect(() => {
-    fetch("https://61c412bff1af4a0017d99277.mockapi.io/movies", {
-      method: "GET",
-    })
-      .then((data) => data.json())
-    .then((mvs)=>setMovieList(mvs))
-  })
+  
   return (
     <ThemeProvider theme={theme}>
       <Paper sx={{minHeight:"100vh",borderRadius:"0px"}} elevation={5} >
@@ -166,10 +162,13 @@ export default function App() {
             <div className="add-movie">
               <h2 className="slideInLeft">A Small Website Created By Using "REACT"</h2>
             </div>
-            <MovieList movies={movieList} setMovieList={setMovieList} />
+            <MovieList />
           </Route>
           <Route path="/aboutMovies/:id">
-            <MovieDetails movies={movieList} />
+            <MovieDetails />
+          </Route>
+          <Route path="/aboutMoviesedit">
+            <UpdateDetails />
           </Route>
           <Route path="/addcolor">
             <AddColor />
@@ -190,4 +189,5 @@ export default function App() {
   );
 
 }
+
 
