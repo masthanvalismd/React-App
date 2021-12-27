@@ -60,6 +60,11 @@
   align-items: center;
   justify-content: space-between;
 }
+.btn-grp{
+  display: flex;
+  flex-direction: row;
+    justify-content: center;
+}
 
 .counter-Container {
   display: flex;

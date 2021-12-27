@@ -33,7 +33,7 @@ export function AddMovie() {
         }
       })
       .then((data) => data.json())
-      .then(() =>  history.push("/aboutMovies/add"))
+      .then(() =>  history.push("/movies"))
     }
     
     const history = useHistory();

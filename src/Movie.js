@@ -4,13 +4,12 @@ import { Counter } from "./Counter";
 // import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
-import EditIcon from '@mui/icons-material/Edit';
 
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 // import {AddMovie} from "./AddMovie";
 
-export function Movie({ poster, name, rating, summary, deleteButton, id }) {
+export function Movie({ poster, name, rating, summary, deleteButton,editButton, id }) {
   const styles = {
     color: rating >= 8.5 ? "green" : "crimson",
   };
@@ -21,23 +20,21 @@ export function Movie({ poster, name, rating, summary, deleteButton, id }) {
     <div className="movie-container">
       <img className="pic" src={poster} alt="img" />
       <Counter />
-      <div className="delBtn">{deleteButton}</div>
+      
+      <div className="btn-grp">
+        <div className="delBtn">{deleteButton}</div>
+        <div className="editBtn">{editButton}</div>
+      </div>
       <div className="det">
         <h2>{name}</h2>
         <IconButton
-          onClick={() => history.push(`/aboutMovies/${id}`)}
+          onClick={() => history.push(`/movies/${id}`)}
           color="primary"
           aria-label="aboutMovies"
         >
           <InfoIcon />
         </IconButton>
-        <IconButton
-          onClick={() => history.push(`/aboutMoviesedit/${id}`)}
-          color="primary"
-          aria-label="aboutMoviesEdit"
-        >
-          <EditIcon />
-        </IconButton>
+       
         <IconButton onClick={() => setShow(!show)}>
           {show ? <ExpandLessIcon /> : <ExpandMoreIcon />}
         </IconButton>

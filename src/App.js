@@ -1,25 +1,25 @@
 import "./App.css";
 import { useState } from "react";
 import { MovieList } from "./MovieList";
-
+import { BasicForm } from "./BasicForm";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import { Switch, Route, Redirect, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import { AddColor } from "./AddColor";
 import { MovieDetails } from "./MovieDetails";
 import { NotFound } from "./NotFound";
 import { TicTacToe } from "./TicTacToe";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Home } from "./Home";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
-import Paper from '@mui/material/Paper';
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+import Paper from "@mui/material/Paper";
 import { AddMovie } from "./AddMovie";
-import { UpdateDetails } from "./UpdateDetails";
+import { EditMovie } from "./UpdateDetails";
 
 export default function App() {
-  const [mode,setMode]=useState("light")
+  const [mode, setMode] = useState("light");
   const theme = createTheme({
     palette: {
       mode: mode,
@@ -107,87 +107,95 @@ export default function App() {
   //     trailer: "https://www.youtube.com/embed/NgsQ8mVkN8w",
   //   }
 
-  
   // ];
- 
-  
-  
+
   return (
     <ThemeProvider theme={theme}>
-      <Paper sx={{minHeight:"100vh",borderRadius:"0px"}} elevation={5} >
+      <Paper sx={{ minHeight: "100vh", borderRadius: "0px" }} elevation={5}>
+        <div className="App">
+          <div className="navBar">
+            <AppBar postion="static">
+              <Toolbar>
+                <Button color="inherit" onClick={() => history.push("/")}>
+                  🏠Home
+                </Button>
+                <Button color="inherit" onClick={() => history.push("/movies")}>
+                  🎞️AboutMovies
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={() => history.push("/movie/add")}
+                >
+                  📽️AddMovies
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={() => history.push("/addcolor")}
+                >
+                  📲AddColor
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={() => history.push("/basicForm")}
+                >
+                  Form
+                </Button>
+                <Button
+                  color="inherit"
+                  onClick={() => history.push("/tic-tac-toe")}
+                >
+                  🎮TicTacToe
+                </Button>
+                <Button
+                  sx={{ marginLeft: "auto" }}
+                  startIcon={
+                    mode === "dark" ? <Brightness7Icon /> : <Brightness4Icon />
+                  }
+                  color="inherit"
+                  onClick={() => setMode(mode === "light" ? "dark" : "light")}
+                >
+                  {mode === "light" ? "dark" : "light"}mode
+                </Button>
+              </Toolbar>
+            </AppBar>
+          </div>
 
-      <div className="App">
-        <div className="navBar">
-          <AppBar postion="static">
-            <Toolbar>
-              <Button color="inherit" onClick={() => history.push("/")}>
-                🏠Home
-              </Button>
-              <Button
-                color="inherit"
-                onClick={() => history.push("/aboutMovies/add")}
-              >
-                🎞️AboutMovies
-              </Button>
-              <Button color="inherit" onClick={() => history.push("/addMovie")}>
-                📽️AddMovies
-              </Button>
-              <Button color="inherit" onClick={() => history.push("/addcolor")}>
-                📲AddColor
-              </Button>
-              <Button
-                color="inherit"
-                onClick={() => history.push("/tic-tac-toe")}
-              >
-                🎮TicTacToe
-              </Button>
-              <Button sx={{marginLeft:"auto"}}
-                startIcon= {mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
-                color="inherit"
-                onClick={() =>setMode(mode==="light"?"dark":"light") }
-              >{mode==="light"?"dark":"light"}mode
-              </Button>
-            </Toolbar>
-          </AppBar>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/basicForm">
+              <BasicForm />
+            </Route>
+            <Route path="/movie/add">
+              <AddMovie />
+            </Route>
+            <Route path="/movie/edit/:id">
+              <EditMovie />
+            </Route>
+            <Route path="/movies/:id">
+              <MovieDetails />
+            </Route>
+            <Route path="/movies">
+              <div className="add-movie">
+                <h2 className="slideInLeft">
+                  A Small Website Created By Using "REACT"
+                </h2>
+              </div>
+              <MovieList />
+            </Route>
+            <Route path="/addcolor">
+              <AddColor />
+            </Route>
+            <Route path="/tic-tac-toe">
+              <TicTacToe />
+            </Route>
+            <Route path="**">
+              <NotFound />
+            </Route>
+          </Switch>
         </div>
-
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/films">
-            <Redirect to="/aboutMovies" />
-          </Route>
-          <Route path="/aboutMovies/add">
-            <div className="add-movie">
-              <h2 className="slideInLeft">A Small Website Created By Using "REACT"</h2>
-            </div>
-            <MovieList />
-          </Route>
-          <Route path="/aboutMovies/:id">
-            <MovieDetails />
-          </Route>
-          <Route path="/aboutMoviesedit">
-            <UpdateDetails />
-          </Route>
-          <Route path="/addcolor">
-            <AddColor />
-          </Route>
-          <Route path="/tic-tac-toe">
-            <TicTacToe />
-          </Route>
-          <Route path="/addMovie">
-            <AddMovie />
-          </Route>
-          <Route path="**">
-            <NotFound />
-          </Route>
-        </Switch>
-      </div>
       </Paper>
     </ThemeProvider>
   );
-
 }
-
-

@@ -1,53 +1,48 @@
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-
-// import { useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { useHistory, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
-export function UpdateDetails() {
-  // const [movies, setMovieList] = useState([]);
-  const [name, setName] = useState("");
-  const [rating, setRating] = useState("");
-  const [poster, setPoster] = useState("");
-  const [summary, setSummary] = useState("");
-  const [trailer, setTrailer] = useState("");
-  const [userId, setUserId] = useState("");
-  // const { id } = useParams();
-  useEffect(() => {
-    getMovies();
-  }, []);
-  function getMovies() {
-    fetch(`https://61c55338c003e70017b7965d.mockapi.io/movies`).then((data) => {
-      data.json().then((movie) => {
-        // console.warn(resp)
-        setName(movie[0].name);
-        setRating(movie[0].rating);
-        setPoster(movie[0].poster);
-        setSummary(movie[0].summary);
-        setTrailer(movie[0].trailer);
-        setUserId(movie[0].id);
-      });
-    });
-  }
+export function EditMovie() {
+  const { id } = useParams();
+  const [movie, setMovie] = useState(null);
+  const getMovies = () => {
+    fetch(`https://61c55338c003e70017b7965d.mockapi.io/movies/${id}`, {
+      method: "GET",
+    })
+      .then((data) => data.json())
+      .then((mv) => setMovie(mv));
+  };
+  useEffect(getMovies, []);
+  return movie ? <UpdateDetails movie={movie} /> : "";
+}
+function UpdateDetails({ movie }) {
+  const [name, setName] = useState(movie.name);
+  const [rating, setRating] = useState(movie.rating);
+  const [poster, setPoster] = useState(movie.poster);
+  const [summary, setSummary] = useState(movie.summary);
+  const [trailer, setTrailer] = useState(movie.trailer);
+  const editMovie = () => {
+    const updatedMovie = {
+      name,
+      poster,
+      rating,
+      summary,
+      trailer,
+    };
 
-  function updateUser() {
-    let item = { name, rating, poster, summary, trailer, userId };
-    console.warn("item", item);
-    fetch(`https://61c55338c003e70017b7965d.mockapi.io/movies/${userId}`, {
+    fetch(`https://61c55338c003e70017b7965d.mockapi.io/movies/${movie.id}`, {
       method: "PUT",
+      body: JSON.stringify(updatedMovie),
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(item),
-    }).then((data) => {
-      data.json()
-        .then(() => history.push("/aboutMovies/add"));
-    });
-  }
-  const history = useHistory();
+    })
+      .then((data) => data.json())
+      .then(() => history.push("/movies"));
+  };
 
+  const history = useHistory();
   return (
     <div className="textField">
       <TextField
@@ -93,15 +88,14 @@ export function UpdateDetails() {
       <div className="btn">
         <Button
           variant="outlined"
-          style={{ backgroundColor: "black", color: "#FFFFFF" }}
+          style={{ backgroundColor: "black", color: "red" }}
           onClick={() => {
-            updateUser();
+            editMovie();
           }}
         >
-          Update
+          Update Movie
         </Button>
       </div>
     </div>
   );
 }
-
