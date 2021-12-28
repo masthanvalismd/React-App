@@ -1,15 +1,26 @@
 import { useState } from "react";
+import { useReducer } from "react";
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "color":
+      return { color: action.value };
+    default:
+  }
+}
+const initialState={color:"cyan"}
 export function AddColor() {
-  const[color,setColor]=useState("pink ")
-  const styles = { background: color };
+  const[state,dispatch]=useReducer(reducer, initialState)
+  const styles = { background: state.color };
+  
   const [colorList, setColorList] = useState(["#F4C430", "whitesmoke", "green"]);
   return (
     <div className="color">
       <input
-        onChange={(event) => setColor(event.target.value)}
+        onChange={(event) => dispatch({type: "color", value: event.target.value})}
         style={styles}
         placeholder="Enter a Color" />
-      <button onClick={() => setColorList([...colorList, color])}>
+      <button onClick={() => setColorList([...colorList, state.color])}>
         AddColor
       </button>
       {colorList.map((clr) => (
@@ -28,3 +39,5 @@ function ColorBox({ clr }) {
   };
   return <div style={styles}></div>
 }
+
+

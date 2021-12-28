@@ -68,7 +68,7 @@ export function AddMovie() {
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.name && errors.name}
-        helpertext={touched.name && errors.name ? errors.name : ""}
+        helperText={touched.name && errors.name ? errors.name : ""}
       />
       
       <TextField
@@ -81,7 +81,7 @@ export function AddMovie() {
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.rating && errors.rating}
-        helpertext={touched.rating && errors.rating ? errors.rating : ""}
+        helperText={touched.rating && errors.rating ? errors.rating : ""}
       />
       <TextField
         label="Enter Poster Link"
@@ -93,7 +93,7 @@ export function AddMovie() {
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.poster && errors.poster}
-        helpertext={touched.poster && errors.poster ? errors.poster : ""}
+        helperText={touched.poster && errors.poster ? errors.poster : ""}
       />
       <TextField
         label="Enter Summary"
@@ -105,7 +105,7 @@ export function AddMovie() {
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.summary && errors.summary}
-        helpertext={touched.summary && errors.summary ? errors.summary : ""}
+        helperText={touched.summary && errors.summary ? errors.summary : ""}
       />
       <TextField
         label="Enter Trailer"
@@ -117,7 +117,7 @@ export function AddMovie() {
         onChange={handleChange}
         onBlur={handleBlur}
         error={touched.trailer && errors.trailer}
-        helpertext={touched.trailer && errors.trailer ? errors.trailer : ""}
+        helperText={touched.trailer && errors.trailer ? errors.trailer : ""}
       />
       <div className="btn">
         <Button
