@@ -96,7 +96,7 @@ export function BasicForm() {
         placeholder="Enter your email address"
       />
       {touched.email && errors.email ? errors.email : ""}
-      <input
+      <input 
         id="password"
         name="password"
         value={values.password}
