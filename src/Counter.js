@@ -10,9 +10,9 @@ import Badge from "@mui/material/Badge";
 const reducer = (state, action) => {
   switch (action.type) {
     case "likes":
-      return { likes: state.likes + 1 };
+      return { ...state, likes: state.likes + 1 };
     case "dislikes":
-      return { dislikes: state.dislikes + 1 };
+      return { ...state, dislikes: state.dislikes + 1 };
 
     default:
       return state;

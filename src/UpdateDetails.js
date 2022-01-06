@@ -44,27 +44,21 @@ const movievalidationSchema = yup.object({
 function UpdateDetails({ movie }) {
   const { handleChange, handleSubmit, handleBlur, values, touched, errors } =
   useFormik({
-    initialValues: {
-      name: "",
-      rating: "",
-      poster: "",
-      summary: "",
-      trailer: "",
-    },
+    initialValues: movie,
     validationSchema: movievalidationSchema,
-    onSubmit: (newMovie) => {
-      editMovie(newMovie);
-      console.log("onSubmit", newMovie);
+    onSubmit: (updatedMovie) => {
+      editMovie(updatedMovie);
+      console.log("onSubmit", updatedMovie);
     },
   });
 console.log("formik.touched", touched);
 
-  const editMovie = (newMovie) => {
+  const editMovie = (updatedMovie) => {
    
 
     fetch(`https://61c55338c003e70017b7965d.mockapi.io/movies/${movie.id}`, {
       method: "PUT",
-      body: JSON.stringify(newMovie),
+      body: JSON.stringify(updatedMovie),
       headers: {
         "Content-Type": "application/json",
       },
